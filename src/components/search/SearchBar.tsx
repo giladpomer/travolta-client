@@ -6,16 +6,28 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 
-export default function SearchBar() {
+import { Destination } from '../../types/destination';
+
+import { destinationAsString } from '../../modules/destination-formatter';
+
+interface SearchBarProps {
+    destinations: Destination[]
+}
+
+export default function SearchBar({ destinations }: SearchBarProps) {
     return (
         <Container>
             <Row>
                 <Col lg={4}>
                     <Form.Select>
-                        <option>What is your desdination?</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option disabled>What is your desdination?</option>
+                        {
+                            destinations.map(destination => <option
+                                key={destinationAsString(destination)}
+                                value={destinationAsString(destination)}>
+                                {destinationAsString(destination)}
+                            </option>)
+                        }
                     </Form.Select>
                 </Col>
                 <Col lg={2}>
