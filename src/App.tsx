@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 
-//ui components
-import MainTitle from './components/ui/MainTitle';
-import SearchBar from './components/ui/search/SearchBar';
+//components
+import MainTitle from './components/MainTitle';
+import SearchBar from './components/search/SearchBar';
 
 function App() {
     return (
