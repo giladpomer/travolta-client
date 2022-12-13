@@ -11,6 +11,7 @@ import { HotelSearchResult } from './types/hotel-search-result';
 //components
 import MainTitle from './components/MainTitle';
 import SearchBar from './components/search/SearchBar';
+import SearchResults from './components/results/SearchResults';
 
 //modules
 import { getServerUrl } from './modules/server-url';
@@ -37,6 +38,7 @@ function App() {
         <div className="App">
             <MainTitle />
             <SearchBar destinations={_destinations} onSearchClicked={onSearchClicked} />
+            <SearchResults searchResults={_searchResults} />
         </div>
     );
 }

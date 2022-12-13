@@ -14,3 +14,9 @@
     max-width: 34rem;
     margin: auto;
 }
+
+.search-result-item {
+    width: 14em;
+    margin: auto;
+    margin-top: 2em;
+}
