@@ -39,7 +39,7 @@ export default function SearchBar({ destinations, onSearchClicked, isSearchClick
     }
 
     return (
-        <Container>
+        <Container className="search-bar">
             <Row>
                 <Col lg={4}>
                     <Form.Select ref={_destinationRef}>

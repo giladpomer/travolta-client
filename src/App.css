@@ -2,21 +2,29 @@
     text-align: center;
 }
 
-.main-title .title {
-    color: #eb068d;
-    font-weight: bold;
+.main-title {
+    margin-top: 20%;
 }
 
-.main-title .sub-text {
-    color: dimgray;
-    width: 70%;
-    display: block;
-    max-width: 34rem;
-    margin: auto;
-}
+    .main-title .title {
+        color: #eb068d;
+        font-weight: bold;
+    }
+
+    .main-title .sub-text {
+        color: dimgray;
+        width: 70%;
+        display: block;
+        max-width: 34rem;
+        margin: auto;
+    }
 
 .search-result-item {
     width: 14em;
     margin: auto;
     margin-top: 2em;
+}
+
+.search-bar .row > * {
+    margin-top: 0.5em;
 }
