@@ -17,6 +17,8 @@ import SearchResults from './components/results/SearchResults';
 import { getServerUrl } from './modules/server-url';
 
 function App() {
+    const [_isSearchClickedOnce, setIsSearchClickedOnce] = React.useState<boolean>(false);
+
     const [_destinations, setDestinations] = React.useState<Destination[]>([]);
     const [_searchResults, setSearchResults] = React.useState<HotelSearchResult[]>([]);
 
@@ -28,6 +30,8 @@ function App() {
     }, []);
 
     function onSearchClicked(searchParameters: SearchParameters) {
+        setIsSearchClickedOnce(true);
+
         axios.post(getServerUrl() + '/search', searchParameters)
             .then(response => {
                 setSearchResults(response.data);
@@ -36,9 +40,16 @@ function App() {
 
     return (
         <div className="App">
-            <MainTitle />
-            <SearchBar destinations={_destinations} onSearchClicked={onSearchClicked} />
-            <SearchResults searchResults={_searchResults} />
+            {!_isSearchClickedOnce &&
+                <MainTitle />
+            }
+            <SearchBar
+                destinations={_destinations}
+                onSearchClicked={onSearchClicked}
+                isSearchClickedOnce={_isSearchClickedOnce} />
+            {_isSearchClickedOnce &&
+                <SearchResults searchResults={_searchResults} />
+            }
         </div>
     );
 }

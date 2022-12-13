@@ -19,10 +19,11 @@ import { formatDateAsInputValue } from '../../modules/date-formatter';
 
 interface SearchBarProps {
     destinations: Destination[],
-    onSearchClicked: (searchParameters: SearchParameters) => void
+    onSearchClicked: (searchParameters: SearchParameters) => void,
+    isSearchClickedOnce: boolean
 }
 
-export default function SearchBar({ destinations, onSearchClicked }: SearchBarProps) {
+export default function SearchBar({ destinations, onSearchClicked, isSearchClickedOnce }: SearchBarProps) {
     const _destinationRef = React.useRef<HTMLSelectElement | null>(null);
     const _checkInDateRef = React.useRef<HTMLInputElement | null>(null);
     const _checkOutDateRef = React.useRef<HTMLInputElement | null>(null);
@@ -75,7 +76,9 @@ export default function SearchBar({ destinations, onSearchClicked }: SearchBarPr
                     </InputGroup>
                 </Col>
                 <Col lg={2} className="d-grid">
-                    <Button variant="primary" onClick={search}>Search</Button>
+                    <Button variant="primary" onClick={search}>
+                        {isSearchClickedOnce ? 'Update Search' : 'Search'}
+                    </Button>
                 </Col>
             </Row>
         </Container>
