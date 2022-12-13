@@ -9,6 +9,8 @@ import Button from 'react-bootstrap/Button';
 import { Destination } from '../../types/destination';
 
 import { destinationAsString } from '../../modules/destination-formatter';
+import { getFutureDate } from '../../modules/date-utils';
+import { formatDateAsInputValue } from '../../modules/date-formatter';
 
 interface SearchBarProps {
     destinations: Destination[]
@@ -31,10 +33,10 @@ export default function SearchBar({ destinations }: SearchBarProps) {
                     </Form.Select>
                 </Col>
                 <Col lg={2}>
-                    <Form.Control type="date" placeholder="Check In" />
+                    <Form.Control type="date" placeholder="Check In" defaultValue={formatDateAsInputValue(getFutureDate(7))} />
                 </Col>
                 <Col lg={2}>
-                    <Form.Control type="date" placeholder="Check Out" />
+                    <Form.Control type="date" placeholder="Check Out" defaultValue={formatDateAsInputValue(getFutureDate(7 + 7))} />
                 </Col>
                 <Col lg={2}>
                     <InputGroup>
