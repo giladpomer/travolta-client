@@ -1,46 +1,39 @@
-# Getting Started with Create React App
+# Travolta - Online Travel Agency Demo
+A [React.js](https://reactjs.org/) web app for finding hotels based on user preferences.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Try it now!
+> Please note that this web app is calling a [web service](https://github.com/giladpomer/travolta-server) which sleeps when it's not frequently called. Calling an endpoint by entering the web app will start the service (this can take around 40 seconds for the first call)
 
-## Available Scripts
+Travolta is available [here](https://travolta.onrender.com/)
 
+## Running Locally
 In the project directory, you can run:
 
-### `npm start`
+`npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+It runs the app in development mode.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### `npm test`
+## Features
+ + Search hotels based on parameters like destination, check in and check out times.
+ + Responsive and looks well on mobile.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Screenshots
+### PC Resolution
+![pc_main](https://user-images.githubusercontent.com/26198102/207729647-14b47b41-2a74-4a3b-af4a-89f9268eafeb.png)
+![pc_results](https://user-images.githubusercontent.com/26198102/207729661-512f0546-3a93-48bc-9f0b-337d560c02b3.png)
 
-### `npm run build`
+### Mobile Resolution
+![mobile_main](https://user-images.githubusercontent.com/26198102/207729669-88c7b0d1-62d0-4066-9819-69577f94df2a.png)
+![mobile_results](https://user-images.githubusercontent.com/26198102/207729680-1ab834a4-0e15-4364-a509-694eea40d729.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Continuous Integration (CI)
+All [jest](https://jestjs.io/) unit tests will automatically run on every push to this GitHub repository before trying to deploy.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Continuous Deployment (CD)
+The repository is automatically deployed on every push to this GitHub repository using [render](https://render.com/).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## External Packages
++ [react-bootstrap](https://react-bootstrap.github.io/)
++ [axios](https://axios-http.com/)
