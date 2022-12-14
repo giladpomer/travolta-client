@@ -12,7 +12,7 @@ export default function SearchResults({ searchResults }: SearchResultsProps) {
     return (
         <div>
             {searchResults.map(item => <SearchResultItem
-                key={item.id}
+                key={item.hotelInfo.id}
                 data={item}
             />)}
         </div>
