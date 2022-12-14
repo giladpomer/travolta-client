@@ -7,6 +7,8 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
+import Overlay from 'react-bootstrap/Overlay';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 //types
 import { Location } from '../../types/location';
@@ -19,18 +21,27 @@ import { formatDateAsInputValue } from '../../modules/date-formatter';
 
 interface SearchBarProps {
     destinations: Location[],
-    onSearchClicked: (searchParameters: SearchParameters) => void,
+    search: (searchParameters: SearchParameters) => void,
     isSearchClickedOnce: boolean
 }
 
-export default function SearchBar({ destinations, onSearchClicked, isSearchClickedOnce }: SearchBarProps) {
+export default function SearchBar({ destinations, search, isSearchClickedOnce }: SearchBarProps) {
+    const [_isDateInvalidNoteVisible, setIsDateInvalidNoteVisible] = React.useState<boolean>(false);
+
     const _destinationRef = React.useRef<HTMLSelectElement | null>(null);
     const _checkInDateRef = React.useRef<HTMLInputElement | null>(null);
     const _checkOutDateRef = React.useRef<HTMLInputElement | null>(null);
     const _adultsAmountRef = React.useRef<HTMLInputElement | null>(null);
 
-    function search() {
-        onSearchClicked({
+    function onSearchClicked() {
+        const isCheckoutDateInvalid: boolean = !isCheckInDateBeforeCheckOutDate();
+        setIsDateInvalidNoteVisible(isCheckoutDateInvalid);
+
+        if (isCheckoutDateInvalid) {
+            return;
+        }
+
+        search({
             destination: stringAsDestination(_destinationRef.current?.value ?? ''),
             timeframe: {
                 from: new Date(_checkInDateRef.current?.value ?? ''),
@@ -38,6 +49,10 @@ export default function SearchBar({ destinations, onSearchClicked, isSearchClick
             },
             adultsAmount: parseInt(_adultsAmountRef.current?.value ?? '0')
         });
+    }
+
+    function isCheckInDateBeforeCheckOutDate(): boolean {
+        return new Date(_checkInDateRef.current?.value ?? '') < new Date(_checkOutDateRef.current?.value ?? '');
     }
 
     return (
@@ -70,6 +85,14 @@ export default function SearchBar({ destinations, onSearchClicked, isSearchClick
                         defaultValue={formatDateAsInputValue(getFutureDate(7 + 7))}
                         ref={_checkOutDateRef}
                     />
+
+                    <Overlay target={_checkOutDateRef.current} show={_isDateInvalidNoteVisible} placement="bottom">
+                        {(props) => (
+                            <Tooltip {...props}>
+                                Check out date can't be earlier than (or same as) check in date
+                            </Tooltip>
+                        )}
+                    </Overlay>
                 </Col>
                 <Col lg={2}>
                     <InputGroup>
@@ -78,7 +101,7 @@ export default function SearchBar({ destinations, onSearchClicked, isSearchClick
                     </InputGroup>
                 </Col>
                 <Col lg={2} className="d-grid">
-                    <Button variant="primary" onClick={search}>
+                    <Button variant="primary" onClick={onSearchClicked}>
                         {isSearchClickedOnce ? 'Update Search' : 'Search'}
                     </Button>
                 </Col>

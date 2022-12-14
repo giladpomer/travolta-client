@@ -29,7 +29,7 @@ function App() {
             });
     }, []);
 
-    function onSearchClicked(searchParameters: SearchParameters) {
+    function search(searchParameters: SearchParameters) {
         setIsSearchClickedOnce(true);
 
         axios.post(getServerUrl() + '/search', searchParameters)
@@ -45,7 +45,7 @@ function App() {
             }
             <SearchBar
                 destinations={_destinations}
-                onSearchClicked={onSearchClicked}
+                search={search}
                 isSearchClickedOnce={_isSearchClickedOnce} />
             {_isSearchClickedOnce &&
                 <SearchResults searchResults={_searchResults} />
