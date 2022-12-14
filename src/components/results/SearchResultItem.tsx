@@ -14,7 +14,7 @@ export default function SearchResultItem({ data }: SearchResultItemProps) {
             <Card.Body>
                 <Card.Title>{data.hotelInfo.name}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">
-                    {data.hotelInfo.city + ', ' + data.hotelInfo.country}
+                    {data.hotelInfo.location.city + ', ' + data.hotelInfo.location.country}
                 </Card.Subtitle>
                 <Card.Text>
                     Price of the stay: {data.price_of_stay.toLocaleString()} &euro;
