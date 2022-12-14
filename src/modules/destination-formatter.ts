@@ -1,12 +1,12 @@
-import { Destination } from '../types/destination';
+import { Location } from '../types/location';
 
 const SEPARATOR = ', ';
 
-export function destinationAsString(destination: Destination): string {
+export function destinationAsString(destination: Location): string {
     return destination.city + SEPARATOR + destination.country;
 }
 
-export function stringAsDestination(destination: string): Destination {
+export function stringAsDestination(destination: string): Location {
     const data = destination.split(SEPARATOR);
 
     return {

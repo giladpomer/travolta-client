@@ -1,7 +1,7 @@
-import { Destination } from './destination';
+import { Location } from './location';
 
 export interface SearchParameters {
-    destination: Destination,
+    destination: Location,
     checkInDate: Date,
     checkOutDate: Date,
     adultsAmount: number

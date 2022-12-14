@@ -9,7 +9,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 
 //types
-import { Destination } from '../../types/destination';
+import { Location } from '../../types/location';
 import { SearchParameters } from '../../types/search-parameters';
 
 //modules
@@ -18,7 +18,7 @@ import { getFutureDate } from '../../modules/date-utils';
 import { formatDateAsInputValue } from '../../modules/date-formatter';
 
 interface SearchBarProps {
-    destinations: Destination[],
+    destinations: Location[],
     onSearchClicked: (searchParameters: SearchParameters) => void,
     isSearchClickedOnce: boolean
 }
