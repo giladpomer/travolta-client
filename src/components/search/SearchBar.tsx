@@ -32,8 +32,10 @@ export default function SearchBar({ destinations, onSearchClicked, isSearchClick
     function search() {
         onSearchClicked({
             destination: stringAsDestination(_destinationRef.current?.value ?? ''),
-            checkInDate: new Date(_checkInDateRef.current?.value ?? ''),
-            checkOutDate: new Date(_checkOutDateRef.current?.value ?? ''),
+            timeframe: {
+                from: new Date(_checkInDateRef.current?.value ?? ''),
+                until: new Date(_checkOutDateRef.current?.value ?? ''),
+            },
             adultsAmount: parseInt(_adultsAmountRef.current?.value ?? '0')
         });
     }
