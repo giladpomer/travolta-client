@@ -1,4 +1,5 @@
 import Card from 'react-bootstrap/Card';
+import Badge from 'react-bootstrap/Badge';
 
 //types
 import { HotelSearchResult } from '../../types/hotel-search-result';
@@ -17,7 +18,12 @@ export default function SearchResultItem({ data }: SearchResultItemProps) {
                     {data.hotelInfo.location.city + ', ' + data.hotelInfo.location.country}
                 </Card.Subtitle>
                 <Card.Text>
-                    Price of the stay: {data.price_of_stay.toLocaleString()} &euro;
+                    <Badge bg={data.is_available ? 'success' : 'danger'}>
+                        {data.is_available ? 'Available' : 'Unavailable'}
+                    </Badge>
+                    <p>
+                        Price of the stay: {data.price_of_stay.toLocaleString()} &euro;
+                    </p>
                 </Card.Text>
             </Card.Body>
         </Card>
