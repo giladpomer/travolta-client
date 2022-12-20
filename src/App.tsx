@@ -29,13 +29,11 @@ function App() {
             });
     }, []);
 
-    function search(searchParameters: SearchParameters) {
+    async function search(searchParameters: SearchParameters) {
         setIsSearchClickedOnce(true);
 
-        axios.post(getServerUrl() + '/search', searchParameters)
-            .then(response => {
-                setSearchResults(response.data);
-            });
+        const response = await axios.post(getServerUrl() + '/search', searchParameters);
+        setSearchResults(response.data);
     }
 
     return (
