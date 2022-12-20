@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 
 import './App.css';
 
@@ -14,7 +13,7 @@ import SearchBar from './components/search/SearchBar';
 import SearchResults from './components/results/SearchResults';
 
 //modules
-import { getServerUrl } from './modules/server-url';
+import * as API from './modules/api';
 
 function App() {
     const [_isSearchClickedOnce, setIsSearchClickedOnce] = React.useState<boolean>(false);
@@ -23,17 +22,19 @@ function App() {
     const [_searchResults, setSearchResults] = React.useState<HotelSearchResult[]>([]);
 
     React.useEffect(() => {
-        axios.get(getServerUrl() + '/destinations')
-            .then(response => {
-                setDestinations(response.data);
-            });
+        updateDestinations();
     }, []);
 
-    async function search(searchParameters: SearchParameters) {
+    async function updateDestinations(): Promise<void> {
+        const destinations: Location[] = await API.getDestinations();
+        setDestinations(destinations);
+    }
+
+    async function search(searchParameters: SearchParameters): Promise<void> {
         setIsSearchClickedOnce(true);
 
-        const response = await axios.post(getServerUrl() + '/search', searchParameters);
-        setSearchResults(response.data);
+        const searchResults: HotelSearchResult[] = await API.search(searchParameters);
+        setSearchResults(searchResults);
     }
 
     return (
